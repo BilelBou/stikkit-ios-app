@@ -29,15 +29,6 @@
         }
       },
       {
-        "package": "GoogleMaps",
-        "repositoryURL": "https://github.com/YAtechnologies/GoogleMaps-SP",
-        "state": {
-          "branch": null,
-          "revision": "68d9f01a1ffede0bdd58834923852fbedf013ab2",
-          "version": "4.2.0"
-        }
-      },
-      {
         "package": "Hero",
         "repositoryURL": "https://github.com/HeroTransitions/Hero.git",
         "state": {
@@ -71,6 +62,15 @@
           "branch": null,
           "revision": "06cdb189ba082f49fafde0ff177201bd887bf5cd",
           "version": "0.1.2"
+        }
+      },
+      {
+        "package": "Lottie",
+        "repositoryURL": "git@github.com:airbnb/lottie-ios.git",
+        "state": {
+          "branch": "master",
+          "revision": "e9c52fa3e2f962febb6fcc27a94eff15292130b2",
+          "version": null
         }
       },
       {

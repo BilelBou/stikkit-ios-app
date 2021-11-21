@@ -1,11 +1,3 @@
-import Foundation
-
-struct User: Decodable {
-    let id: Int
-    let name: String
-    let image: String
-}
-
 // This file was generated from JSON Schema using quicktype, do not modify it directly.
 // To parse the JSON, add this file to your project and do:
 //
@@ -16,7 +8,7 @@ import Foundation
 // MARK: - Group
 struct Group: Codable {
     let createdAt, id, ownerID, name: String
-    let users: [Welcome]
+    let users: [User]
 
     enum CodingKeys: String, CodingKey {
         case createdAt, id
@@ -26,10 +18,10 @@ struct Group: Codable {
 }
 
 // MARK: - Welcome
-struct Welcome: Codable {
+struct User: Codable {
     let createdAt, id, groupID, firstName: String
     let lastName, email: String
-    let phone, address: JSONNull?
+    let phone, address: String?
     let image, password: String
     let group: Group?
     let stickers: [Sticker]?
@@ -43,15 +35,20 @@ struct Welcome: Codable {
 
 // MARK: - Sticker
 struct Sticker: Codable, Hashable {
-    let createdAt, id, ownerID: String
-    let lastLongitude, lastLatitude: JSONNull?
+    let createdAt, id, ownerID, name: String
+    let position: Position?
     let lastPositionDate: String
 
     enum CodingKeys: String, CodingKey {
         case createdAt, id
         case ownerID = "ownerId"
-        case lastLongitude, lastLatitude, lastPositionDate
+        case name, position, lastPositionDate
     }
+}
+
+// MARK: - Position
+struct Position: Codable, Hashable {
+    let latitude, longitude: Double
 }
 
 // MARK: - Encode/decode helpers

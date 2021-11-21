@@ -59,7 +59,7 @@ class StickerCollectionViewCell: UICollectionViewCell {
         ])
     }
 
-    func configure(name: String, users: [Welcome]) {
+    func configure(name: String, users: [User]) {
         self.nameLabel.attributedText = name.typography(.title3, color: Color.white)
         if !users.isEmpty {
             for user in users {

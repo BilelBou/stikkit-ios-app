@@ -66,7 +66,7 @@ class StickerCell: UICollectionViewCell {
     }
 
     func configure(sticker: Sticker) {
-        name.attributedText = "Vélo".typography(.textStrong)
+        name.attributedText = sticker.name.typography(.textStrong)
         lastSeen.attributedText = "2 min ago".typography(.caption)
         city.attributedText = "Nice Alpes Côte d'azur".typography(.caption)
     }

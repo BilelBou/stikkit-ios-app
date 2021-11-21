@@ -151,7 +151,7 @@ public class AuthAPI {
 
     }
 
-    func getUserById(id: String, completion: @escaping (Welcome) -> Void) {
+    func getUserById(id: String, completion: @escaping (User) -> Void) {
         let urlGetUser = (URL(string: urlAPI+"users/"+id))
         var request = URLRequest(url: urlGetUser!)
 
@@ -161,11 +161,42 @@ public class AuthAPI {
             if let error = error {
                 print(error)
             } else {
-                if let _ = response, let decodedResponse = try? JSONDecoder().decode(Welcome.self, from: data!) {
+                if let _ = response, let decodedResponse = try? JSONDecoder().decode(User.self, from: data!) {
                     completion(decodedResponse)
+                } else {
+                    print(error)
                 }
             }
         }
         task.resume()
+    }
+    
+    func updateSticker(id: String, name: String) {
+        let urlCreateGroup = URL(string: urlAPI+"stickers/update")
+        var request = URLRequest(url: urlCreateGroup!)
+        let body = [
+            "id" : id,
+            "ownerId" : defaults.string(forKey: "id")!,
+            "name" : name,
+        ]
+
+        let bodyData = try? JSONSerialization.data(withJSONObject: body)
+        request.httpMethod = "PUT"
+        request.addValue("application/json",forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json",forHTTPHeaderField: "Accept")
+        request.httpBody = bodyData
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print(error)
+            } else {
+                if let response = response as? HTTPURLResponse {
+                    print(response.statusCode)
+                }
+            }
+        }
+        task.resume()
+
     }
 }

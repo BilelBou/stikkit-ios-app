@@ -3,11 +3,9 @@ import UIKit
 import Kingfisher
 
 final class MyProfileViewController: Controller {
-    private var user: Welcome
+    private var user: User
     let defaults = UserDefaults.standard
-    private var groups: [GroupModel] = [GroupModel(createdAt: "2021-10-21T17:15:06.481Z", id: "123", ownerID: "1", name: "Family", users: [User(id: 1, name: "Bilel", image: "public/img/users/default.png"), User(id: 2, name: "Hugo", image: "public/img/users/default.png"), User(id: 3, name: "Tristan", image: "public/img/users/default.png")]),
-                                        GroupModel(createdAt: "2021-10-21T17:15:06.481Z", id: "123", ownerID: "1", name: "Friends", users: [])]
-
+    
     private lazy var profilePicture = UIImageView()..{
         $0.translatesAutoresizingMaskIntoConstraints = false
         let ressource = ImageResource(downloadURL: URL(string: "https://api.stikkit.fr/" + defaults.string(forKey: "image")!)!)
@@ -108,7 +106,7 @@ final class MyProfileViewController: Controller {
         tabBarController?.tabBar.isHidden = false
     }
 
-    init(user: Welcome) {
+    init(user: User) {
         self.user = user
         super.init()
         configureStyle()
@@ -186,13 +184,6 @@ extension MyProfileViewController: UICollectionViewDelegate, UICollectionViewDat
         return cell
     }
 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        //        let vc = MapViewController()
-        //        vc.navigationController?.view.backgroundColor = .clear
-        //        vc.modalPresentationStyle = .fullScreen
-        //        present(vc, animated: true, completion: nil)
-        //navigationController?.pushViewController(vc, animated: true)
-    }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width

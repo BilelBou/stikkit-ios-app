@@ -12,6 +12,9 @@
 		243C759526EF6FF0005E1719 /* FloatingPanel in Frameworks */ = {isa = PBXBuildFile; productRef = 243C759426EF6FF0005E1719 /* FloatingPanel */; };
 		243C759726EF7072005E1719 /* StickersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243C759626EF7072005E1719 /* StickersViewController.swift */; };
 		243C759926EF73D0005E1719 /* StickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 243C759826EF73D0005E1719 /* StickerTableViewCell.swift */; };
+		24496C5F2743D60F00611B43 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 24496C5E2743D60F00611B43 /* Lottie */; };
+		24496C612743D79200611B43 /* AuthorizationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24496C602743D79200611B43 /* AuthorizationController.swift */; };
+		24496C642743DA7500611B43 /* route.json in Resources */ = {isa = PBXBuildFile; fileRef = 24496C632743DA7500611B43 /* route.json */; };
 		2470152226EF871D005D3B75 /* DashboardTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2470152126EF871D005D3B75 /* DashboardTabBarController.swift */; };
 		2470152626EF928B005D3B75 /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2470152526EF928B005D3B75 /* MyProfileViewController.swift */; };
 		2470152826F0CE46005D3B75 /* GeoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2470152726F0CE46005D3B75 /* GeoModel.swift */; };
@@ -26,8 +29,6 @@
 		24C12ED62630C6D000DB2337 /* JWTDecode in Frameworks */ = {isa = PBXBuildFile; productRef = 24C12ED52630C6D000DB2337 /* JWTDecode */; };
 		24C4FECD2732E82400F0C2D8 /* ScannerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C4FECC2732E82400F0C2D8 /* ScannerController.swift */; };
 		24C8FCF02649476600FB25B8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24C8FCEF2649476600FB25B8 /* MapViewController.swift */; };
-		24C8FCF3264948C100FB25B8 /* GoogleMaps in Frameworks */ = {isa = PBXBuildFile; productRef = 24C8FCF2264948C100FB25B8 /* GoogleMaps */; };
-		24C8FCF5264948C100FB25B8 /* GooglePlaces in Frameworks */ = {isa = PBXBuildFile; productRef = 24C8FCF4264948C100FB25B8 /* GooglePlaces */; };
 		24D97399263185FE00D1F966 /* MHLoadingButton in Frameworks */ = {isa = PBXBuildFile; productRef = 24D97398263185FE00D1F966 /* MHLoadingButton */; };
 		24D973AB2631C11600D1F966 /* StickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D973AA2631C11600D1F966 /* StickerModel.swift */; };
 		24D973AF2631C52200D1F966 /* StickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D973AE2631C52200D1F966 /* StickerCollectionViewCell.swift */; };
@@ -106,6 +107,8 @@
 		2436E7D72721BD730041D844 /* CreateGroupController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateGroupController.swift; sourceTree = "<group>"; };
 		243C759626EF7072005E1719 /* StickersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickersViewController.swift; sourceTree = "<group>"; };
 		243C759826EF73D0005E1719 /* StickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerTableViewCell.swift; sourceTree = "<group>"; };
+		24496C602743D79200611B43 /* AuthorizationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationController.swift; sourceTree = "<group>"; };
+		24496C632743DA7500611B43 /* route.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = route.json; path = ../../../../../Downloads/route.json; sourceTree = "<group>"; };
 		2470152126EF871D005D3B75 /* DashboardTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTabBarController.swift; sourceTree = "<group>"; };
 		2470152526EF928B005D3B75 /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		2470152726F0CE46005D3B75 /* GeoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoModel.swift; sourceTree = "<group>"; };
@@ -168,13 +171,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24C8FCF3264948C100FB25B8 /* GoogleMaps in Frameworks */,
 				24D97399263185FE00D1F966 /* MHLoadingButton in Frameworks */,
 				24F3926B2721CFD800B49CDC /* Kingfisher in Frameworks */,
 				24C12ED62630C6D000DB2337 /* JWTDecode in Frameworks */,
 				243C759526EF6FF0005E1719 /* FloatingPanel in Frameworks */,
-				24C8FCF5264948C100FB25B8 /* GooglePlaces in Frameworks */,
 				24C12E7726309DD400DB2337 /* Hero in Frameworks */,
+				24496C5F2743D60F00611B43 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,12 +197,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		24496C622743DA6700611B43 /* lottie */ = {
+			isa = PBXGroup;
+			children = (
+				24496C632743DA7500611B43 /* route.json */,
+			);
+			path = lottie;
+			sourceTree = "<group>";
+		};
 		2470152326EF9149005D3B75 /* AuthViews */ = {
 			isa = PBXGroup;
 			children = (
 				24F43296262476B100209D94 /* LoginViewController.swift */,
 				24C12E7026309C1100DB2337 /* RegisterViewController.swift */,
 				24EDE41C27393FDA009CCAE2 /* StickerCell.swift */,
+				24496C602743D79200611B43 /* AuthorizationController.swift */,
 			);
 			path = AuthViews;
 			sourceTree = "<group>";
@@ -214,9 +225,18 @@
 			path = Archives;
 			sourceTree = "<group>";
 		};
+		2484A769273E9AF90081D5E5 /* Add Stickers */ = {
+			isa = PBXGroup;
+			children = (
+				24C4FECC2732E82400F0C2D8 /* ScannerController.swift */,
+			);
+			path = "Add Stickers";
+			sourceTree = "<group>";
+		};
 		24C12EB32630BC4200DB2337 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2484A769273E9AF90081D5E5 /* Add Stickers */,
 				24EDE41E27395369009CCAE2 /* Profil */,
 				2470152426EF9225005D3B75 /* Archives */,
 				2470152326EF9149005D3B75 /* AuthViews */,
@@ -227,7 +247,6 @@
 				2470152C26F0E282005D3B75 /* StickerDetailViewController.swift */,
 				2470152E26F0F9B2005D3B75 /* StickerActionView.swift */,
 				2436E7D72721BD730041D844 /* CreateGroupController.swift */,
-				24C4FECC2732E82400F0C2D8 /* ScannerController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -305,6 +324,7 @@
 		24F43291262476B100209D94 /* stikkit-ios */ = {
 			isa = PBXGroup;
 			children = (
+				24496C622743DA6700611B43 /* lottie */,
 				24F59B93272592FF001C28AC /* Common */,
 				24C12ECD2630C67800DB2337 /* Models */,
 				24C12EB72630BCB900DB2337 /* API */,
@@ -417,10 +437,9 @@
 				24C12E7626309DD400DB2337 /* Hero */,
 				24C12ED52630C6D000DB2337 /* JWTDecode */,
 				24D97398263185FE00D1F966 /* MHLoadingButton */,
-				24C8FCF2264948C100FB25B8 /* GoogleMaps */,
-				24C8FCF4264948C100FB25B8 /* GooglePlaces */,
 				243C759426EF6FF0005E1719 /* FloatingPanel */,
 				24F3926A2721CFD800B49CDC /* Kingfisher */,
+				24496C5E2743D60F00611B43 /* Lottie */,
 			);
 			productName = "stikkit-ios";
 			productReference = 24F4328F262476B100209D94 /* stikkit-ios.app */;
@@ -497,9 +516,9 @@
 				24C12E7526309DD400DB2337 /* XCRemoteSwiftPackageReference "Hero" */,
 				24C12ED42630C6D000DB2337 /* XCRemoteSwiftPackageReference "JWTDecode" */,
 				24D97397263185FE00D1F966 /* XCRemoteSwiftPackageReference "loading-buttons-ios" */,
-				24C8FCF1264948C100FB25B8 /* XCRemoteSwiftPackageReference "GoogleMaps-SP" */,
 				243C759326EF6FF0005E1719 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
 				24F392692721CFD800B49CDC /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				24496C5D2743D60F00611B43 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = 24F43290262476B100209D94 /* Products */;
 			projectDirPath = "";
@@ -518,6 +537,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24F433002624772D00209D94 /* Icon.ttf in Resources */,
+				24496C642743DA7500611B43 /* route.json in Resources */,
 				24F433012624772D00209D94 /* RoobertRegular.woff in Resources */,
 				24F432FD2624772D00209D94 /* loadingWhite.json in Resources */,
 				24F432FA2624772D00209D94 /* Assets.xcassets in Resources */,
@@ -584,6 +604,7 @@
 				24F432E72624772500209D94 /* ReusableView.swift in Sources */,
 				24EDE423273953CF009CCAE2 /* SettingCell.swift in Sources */,
 				24F432DF2624772500209D94 /* PowderButton.swift in Sources */,
+				24496C612743D79200611B43 /* AuthorizationController.swift in Sources */,
 				24F43293262476B100209D94 /* AppDelegate.swift in Sources */,
 				24EDE41D27393FDA009CCAE2 /* StickerCell.swift in Sources */,
 				24F43295262476B100209D94 /* SceneDelegate.swift in Sources */,
@@ -926,6 +947,14 @@
 				minimumVersion = 2.4.0;
 			};
 		};
+		24496C5D2743D60F00611B43 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:airbnb/lottie-ios.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		24C12E7526309DD400DB2337 /* XCRemoteSwiftPackageReference "Hero" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/HeroTransitions/Hero.git";
@@ -940,14 +969,6 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 2.6.0;
-			};
-		};
-		24C8FCF1264948C100FB25B8 /* XCRemoteSwiftPackageReference "GoogleMaps-SP" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/YAtechnologies/GoogleMaps-SP";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.2.0;
 			};
 		};
 		24D97397263185FE00D1F966 /* XCRemoteSwiftPackageReference "loading-buttons-ios" */ = {
@@ -974,6 +995,11 @@
 			package = 243C759326EF6FF0005E1719 /* XCRemoteSwiftPackageReference "FloatingPanel" */;
 			productName = FloatingPanel;
 		};
+		24496C5E2743D60F00611B43 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 24496C5D2743D60F00611B43 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
 		24C12E7626309DD400DB2337 /* Hero */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 24C12E7526309DD400DB2337 /* XCRemoteSwiftPackageReference "Hero" */;
@@ -983,16 +1009,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 24C12ED42630C6D000DB2337 /* XCRemoteSwiftPackageReference "JWTDecode" */;
 			productName = JWTDecode;
-		};
-		24C8FCF2264948C100FB25B8 /* GoogleMaps */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 24C8FCF1264948C100FB25B8 /* XCRemoteSwiftPackageReference "GoogleMaps-SP" */;
-			productName = GoogleMaps;
-		};
-		24C8FCF4264948C100FB25B8 /* GooglePlaces */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 24C8FCF1264948C100FB25B8 /* XCRemoteSwiftPackageReference "GoogleMaps-SP" */;
-			productName = GooglePlaces;
 		};
 		24D97398263185FE00D1F966 /* MHLoadingButton */ = {
 			isa = XCSwiftPackageProductDependency;

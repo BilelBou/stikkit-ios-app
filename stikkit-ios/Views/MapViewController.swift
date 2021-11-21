@@ -5,13 +5,9 @@ import FloatingPanel
 
 class MapViewController: UIViewController, StickersViewControllerDelegate, MKMapViewDelegate {
     fileprivate let locationManager: CLLocationManager = CLLocationManager()
-    let fakeData: [fakeLocation] = [fakeLocation(title: "Prototype", loca: GeoModel(latitude: 43.69577319341921, longitude: 7.269619769625674)),
-                                    fakeLocation(title: "test1", loca: GeoModel(latitude: 43.69601029076336, longitude: 7.277102691102712)),
-                                    fakeLocation(title: "test2", loca: GeoModel(latitude: 43.70159515127883, longitude: 7.265858870982911)),
-                                    fakeLocation(title: "test3", loca: GeoModel(latitude: 43.697685803582445, longitude: 7.278819304876558))]
     let stickersPanel = FloatingPanelController()
     let detailsPanel = FloatingPanelController()
-    let user: Welcome
+    let user: User
 
     private lazy var detailsVC = StickerDetailViewController()..{
         $0.delegate = self
@@ -32,7 +28,7 @@ class MapViewController: UIViewController, StickersViewControllerDelegate, MKMap
         $0.translatesAutoresizingMaskIntoConstraints = false
     }
 
-    init(user: Welcome) {
+    init(user: User) {
         self.user = user
         super.init(nibName: nil, bundle: nil)
     }
@@ -45,8 +41,6 @@ class MapViewController: UIViewController, StickersViewControllerDelegate, MKMap
         super.viewDidLoad()
         navigationController?.setNavigationBarHidden(true, animated: false)
         configureStyleAndLayout()
-        createAnnotation()
-        locationManager.requestWhenInUseAuthorization()
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.distanceFilter = kCLDistanceFilterNone
         locationManager.startUpdatingLocation()
@@ -56,6 +50,7 @@ class MapViewController: UIViewController, StickersViewControllerDelegate, MKMap
         let initLocation = CLLocation(latitude: userLatitude, longitude: userLongitude)
         mapView.centerToLocation(initLocation)
         mapView.showsUserLocation = true
+        mapView.delegate = self
 
         guard let stickers = user.stickers else { return }
         stickersVC.stickersTab = stickers
@@ -67,6 +62,7 @@ class MapViewController: UIViewController, StickersViewControllerDelegate, MKMap
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        createAnnotation()
     }
     
     private func configureStyleAndLayout() {
@@ -80,9 +76,9 @@ class MapViewController: UIViewController, StickersViewControllerDelegate, MKMap
         ])
     }
 
-    func didTapCell(sticker: stickerModel, pos: GeoModel) {
-        ///Waiting for data from BE
-        mapView.centerToLocation(CLLocation(latitude: pos.latitude, longitude: pos.longitude), regionRadius: 100)
+    func didTapCell(sticker: Sticker) {
+        guard let position = sticker.position else { return }
+        mapView.centerToLocation(CLLocation(latitude: position.latitude, longitude: position.longitude), regionRadius: 100)
         stickersPanel.removePanelFromParent(animated: true)
         detailsVC.configure(sticker: sticker)
         detailsPanel.set(contentViewController: detailsVC)
@@ -91,12 +87,21 @@ class MapViewController: UIViewController, StickersViewControllerDelegate, MKMap
     }
 
     func createAnnotation() {
-        for location in fakeData {
+        guard let stickers = user.stickers else { return }
+        for sticker in stickers {
             let annotation = MKPointAnnotation()
-            annotation.title = location.title
-            annotation.coordinate = CLLocationCoordinate2D(latitude: location.loca.latitude, longitude: location.loca.longitude)
+            annotation.title = sticker.name
+            guard let position = sticker.position else { return }
+            annotation.coordinate = CLLocationCoordinate2D(latitude: position.latitude, longitude: position.longitude)
             mapView.addAnnotation(annotation)
         }
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+         let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.strokeColor = .systemBlue
+         renderer.lineWidth = 5.0
+         return renderer
     }
 }
 
@@ -108,15 +113,50 @@ private extension MKMapView {
 }
 
 extension MapViewController: StickerDetailViewControllerDelegate {
-    func didTapDirection() {
+    func didTapDirection(sticker: Sticker) {
+        guard let position = sticker.position, let userLatitude = locationManager.location?.coordinate.latitude, let userLongitude = locationManager.location?.coordinate.longitude else { return }
         
+        let stickerPosition = CLLocationCoordinate2D.init(latitude: position.latitude, longitude: position.longitude)
+        let myPosition = CLLocationCoordinate2D.init(latitude: userLatitude, longitude: userLongitude)
+        showRouteOnMap(pickupCoordinate: myPosition, destinationCoordinate: stickerPosition)
+    }
+    
+    func showRouteOnMap(pickupCoordinate: CLLocationCoordinate2D, destinationCoordinate: CLLocationCoordinate2D) {
+        
+        let request = MKDirections.Request()
+        request.source = MKMapItem(placemark: MKPlacemark(coordinate: pickupCoordinate, addressDictionary: nil))
+        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: destinationCoordinate, addressDictionary: nil))
+        request.requestsAlternateRoutes = true
+        request.transportType = .automobile
+        
+        let directions = MKDirections(request: request)
+        
+        directions.calculate { [unowned self] response, error in
+            guard let unwrappedResponse = response else { return }
+            
+            if let route = unwrappedResponse.routes.first {
+                self.mapView.addOverlay(route.polyline)
+                self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets.init(top: 80.0, left: 20.0, bottom: 100.0, right: 20.0), animated: true)
+            }
+        }
     }
 
+
     func didTapClose() {
+        if !mapView.overlays.isEmpty {
+            mapView.removeOverlay(mapView.overlays.first as! MKOverlay)
+        }
         detailsPanel.removePanelFromParent(animated: true)
         stickersPanel.set(contentViewController: stickersVC)
         stickersPanel.addPanel(toParent: self)
         stickersPanel.track(scrollView: stickersVC.stickersTableView)
         stickersPanel.surfaceView.appearance = panelAppearance
+        
+        guard let userLatitude = locationManager.location?.coordinate.latitude else { return }
+        guard let userLongitude = locationManager.location?.coordinate.longitude else { return }
+
+        let initLocation = CLLocation(latitude: userLatitude, longitude: userLongitude)
+        mapView.centerToLocation(initLocation)
+
     }
 }

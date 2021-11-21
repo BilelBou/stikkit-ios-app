@@ -9,11 +9,12 @@ import UIKit
 
 protocol StickerDetailViewControllerDelegate: AnyObject {
     func didTapClose()
-    func didTapDirection()
+    func didTapDirection(sticker: Sticker)
 }
 
 class StickerDetailViewController: UIViewController {
     weak var delegate: StickerDetailViewControllerDelegate?
+    var sticker: Sticker?
 
     private lazy var closePanelButton = UIButton()..{
         $0.translatesAutoresizingMaskIntoConstraints = false
@@ -71,8 +72,9 @@ class StickerDetailViewController: UIViewController {
         ])
     }
 
-    func configure(sticker: stickerModel) {
-        stickerLabel.attributedText = sticker.stickerId.typography(.title2)
+    func configure(sticker: Sticker) {
+        self.sticker = sticker
+        stickerLabel.attributedText = sticker.name.typography(.title2)
     }
 
     @objc func didTapClose() {
@@ -80,6 +82,7 @@ class StickerDetailViewController: UIViewController {
     }
 
     @objc func didTapDirection() {
-        delegate?.didTapDirection()
+        guard let sticker = sticker else { return }
+        delegate?.didTapDirection(sticker: sticker)
     }
 }

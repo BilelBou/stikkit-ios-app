@@ -1,7 +1,7 @@
 import UIKit
 
 enum createType {
-    case group, stickers
+    case group, stickers, stickerName(stickerid: String)
 
     var name: String {
         switch self {
@@ -9,6 +9,8 @@ enum createType {
             return "Create group"
         case .stickers:
             return "Add Sticker"
+        case .stickerName:
+            return "What's your sticker name ?"
         }
     }
 
@@ -18,6 +20,8 @@ enum createType {
             return "Create a groupe to share your position and your stickers with others"
         case .stickers:
             return "Scan the qr code in the back of your sticker"
+        case .stickerName:
+            return "Congrats you have a sticker ! Now choose a name for it !"
         }
     }
 
@@ -27,6 +31,8 @@ enum createType {
             return "Groupe name"
         case .stickers:
             return "Sticker ID"
+        case .stickerName:
+            return "Your sticker name"
         }
     }
 
@@ -36,6 +42,8 @@ enum createType {
             return "Create group"
         case .stickers:
             return "SCAN MY QR CODE"
+        case .stickerName:
+            return "Next"
         }
     }
 
@@ -45,6 +53,15 @@ enum createType {
             return "groupImage"
         case .stickers:
             return "stickerImage"
+        case .stickerName:
+            return "stickerImage"
+        }
+    }
+    
+    var isTextField: Bool {
+        switch self {
+        case .stickers: return false
+        default: return true
         }
     }
 }
@@ -77,7 +94,7 @@ class CreateGroupController: Controller {
         $0.autocorrectionType = .no
         $0.textColor = Color.white
         $0.autocapitalizationType = .none
-        $0.isHidden = type == .stickers
+        $0.isHidden = !type.isTextField
     }
 
     private lazy var createGroupe = UIButton()..{
@@ -148,11 +165,12 @@ class CreateGroupController: Controller {
     }
 
     @objc func didTapCreate() {
-        if type == .stickers {
+        switch type {
+        case .stickers:
             let controller = ScannerViewController()
             controller.modalPresentationStyle = .fullScreen
             self.navigationController?.pushViewController(controller, animated: true)
-        } else {
+        case .group:
             AuthAPI.shared.createGroupe(name: groupeNameTextField.text!) { code in
                 if code == 201 {
                     DispatchQueue.main.async {
@@ -162,6 +180,10 @@ class CreateGroupController: Controller {
                     print("error")
                 }
             }
+        case .stickerName(let stickerID):
+            guard let stickername = groupeNameTextField.text else { return }
+            AuthAPI.shared.updateSticker(id: stickerID, name: stickername)
+            navigationController?.popToRootViewController(animated: true)
         }
     }
 }

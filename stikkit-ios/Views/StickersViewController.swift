@@ -8,7 +8,7 @@
 import UIKit
 
 protocol StickersViewControllerDelegate: AnyObject {
-    func didTapCell(sticker: stickerModel, pos: GeoModel)
+    func didTapCell(sticker: Sticker)
 }
 
 class StickersViewController: UIViewController {
@@ -82,11 +82,12 @@ extension StickersViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: StickerTableViewCell = stickersTableView.dequeue(for: indexPath)
-        cell.configure(name: stickersTab[indexPath.row].id, date: stickersTab[indexPath.row].createdAt)
+        cell.configure(name: stickersTab[indexPath.row].name, date: stickersTab[indexPath.row].createdAt)
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        delegate?.didTapCell(sticker: stickersTab[indexPath.row])
 //        switch stickersTab[indexPath.row].id {
 //        case "Prototype":
 //            delegate?.didTapCell(sticker: stickersTab[indexPath.row], pos: GeoModel(latitude: 43.695804221981724, longitude: 7.269651956133283))

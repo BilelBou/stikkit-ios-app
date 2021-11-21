@@ -90,15 +90,11 @@ class ScannerViewController: Controller, AVCaptureMetadataOutputObjectsDelegate 
 
     func found(code: String) {
         print(code)
-        AuthAPI.shared.linkSticker(stickerId: code) { [weak self] (statusCode) in
-            if statusCode == 201 {
-                DispatchQueue.main.async {
-                    self?.navigationController?.popToRootViewController(animated: true)
-                }
-            } else {
-                print("error")
-            }
-        }
+        
+        // CHOOSE A NAME FOR A STICKER ROOT HERE
+        let vc = CreateGroupController(type: .stickerName(stickerid: code))
+        vc.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(vc, animated: true)
     }
 
     override var prefersStatusBarHidden: Bool {
