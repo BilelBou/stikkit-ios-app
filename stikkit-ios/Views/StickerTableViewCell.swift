@@ -40,7 +40,7 @@ class StickerTableViewCell: UITableViewCell {
 
     private func setup() {
         contentView.addSubview(nameLabel)
-        contentView.addSubview(cityLabel)
+        //contentView.addSubview(cityLabel)
         contentView.addSubview(image)
         NSLayoutConstraint.activate([
             image.leadingAnchor.constraint(equalTo: leadingAnchor, constant: Margin._12),
@@ -48,11 +48,11 @@ class StickerTableViewCell: UITableViewCell {
             image.widthAnchor.constraint(equalToConstant: 30),
             image.heightAnchor.constraint(equalToConstant: 30),
 
-            nameLabel.topAnchor.constraint(equalTo: topAnchor, constant: Margin._12),
+            nameLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             nameLabel.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: Margin._12),
 
-            cityLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: Margin._6),
-            cityLabel.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: Margin._12),
+//            cityLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: Margin._6),
+//            cityLabel.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: Margin._12),
 
 
         ])

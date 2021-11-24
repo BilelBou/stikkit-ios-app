@@ -9,6 +9,7 @@ import UIKit
 
 protocol StickersViewControllerDelegate: AnyObject {
     func didTapCell(sticker: Sticker)
+    func didReloadData()
 }
 
 class StickersViewController: UIViewController {
@@ -17,6 +18,17 @@ class StickersViewController: UIViewController {
 
     var stickersTab: [Sticker] = []
 
+    private lazy var refreshControl = UIRefreshControl()..{
+        $0.addTarget(self, action: #selector(didRefresh), for: .allEvents)
+    }
+    
+    private lazy var loginButton = UIButton()..{
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.layer.cornerRadius = 20
+        $0.setAttributedTitle("Refresh".typography(.caption), for: .normal)
+        $0.addTarget(self, action: #selector(didRefresh), for: .touchUpInside)
+    }
+    
     private lazy var label = UILabel()..{
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.attributedText = "My stickers".typography(.title2)
@@ -62,6 +74,7 @@ class StickersViewController: UIViewController {
     private func configure() {
         view.addSubview(label)
         view.addSubview(stickersTableView)
+        view.addSubview(loginButton)
         NSLayoutConstraint.activate([
             label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Margin._20),
             label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Margin._12),
@@ -69,7 +82,12 @@ class StickersViewController: UIViewController {
             stickersTableView.topAnchor.constraint(equalTo: label.bottomAnchor, constant: Margin._20),
             stickersTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             stickersTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            stickersTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            stickersTableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            
+            loginButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Margin._20),
+            loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Margin._12),
+            loginButton.widthAnchor.constraint(equalToConstant: 150),
+            loginButton.heightAnchor.constraint(equalToConstant: 40),
         ])
     }
 
@@ -88,17 +106,9 @@ extension StickersViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         delegate?.didTapCell(sticker: stickersTab[indexPath.row])
-//        switch stickersTab[indexPath.row].id {
-//        case "Prototype":
-//            delegate?.didTapCell(sticker: stickersTab[indexPath.row], pos: GeoModel(latitude: 43.695804221981724, longitude: 7.269651956133283))
-//        case "test1":
-//            delegate?.didTapCell(sticker: stickersTab[indexPath.row], pos: GeoModel(latitude: 43.69601029076336, longitude: 7.277102691102712))
-//        case "test2":
-//            delegate?.didTapCell(sticker: stickersTab[indexPath.row], pos: GeoModel(latitude: 43.70159515127883, longitude: 7.265858870982911))
-//        case "test3":
-//            delegate?.didTapCell(sticker: stickersTab[indexPath.row], pos: GeoModel(latitude: 43.697685803582445, longitude: 7.278819304876558))
-//        default:
-//            break
-//        }
+    }
+    
+    @objc private func didRefresh() {
+        delegate?.didReloadData()
     }
 }

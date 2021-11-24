@@ -7,7 +7,8 @@ class MapViewController: UIViewController, StickersViewControllerDelegate, MKMap
     fileprivate let locationManager: CLLocationManager = CLLocationManager()
     let stickersPanel = FloatingPanelController()
     let detailsPanel = FloatingPanelController()
-    let user: User
+    var user: User
+    var timer = Timer()
 
     private lazy var detailsVC = StickerDetailViewController()..{
         $0.delegate = self
@@ -62,6 +63,9 @@ class MapViewController: UIViewController, StickersViewControllerDelegate, MKMap
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.timer = Timer.scheduledTimer(withTimeInterval: 60, repeats: true, block: { _ in
+            self.didReloadData()
+        })
         createAnnotation()
     }
     
@@ -118,6 +122,17 @@ class MapViewController: UIViewController, StickersViewControllerDelegate, MKMap
         renderer.strokeColor = .systemBlue
          renderer.lineWidth = 5.0
          return renderer
+    }
+    
+    func didReloadData() {
+        AuthAPI.shared.getUserById(id: user.id) { [weak self] user in
+            guard let self = self else { return }
+            self.user = user
+            DispatchQueue.main.async {
+                self.mapView.removeAnnotations(self.mapView.annotations)
+                self.createAnnotation()
+            }
+        }
     }
 }
 
