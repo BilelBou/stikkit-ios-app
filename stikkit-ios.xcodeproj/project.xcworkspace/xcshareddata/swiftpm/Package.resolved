@@ -20,6 +20,15 @@
         }
       },
       {
+        "package": "DesignSystem",
+        "repositoryURL": "https://github.com/gustvision/design-system-ios",
+        "state": {
+          "branch": "main",
+          "revision": "a826e61861adbd7377b6efd0eb94bb103e8b5084",
+          "version": null
+        }
+      },
+      {
         "package": "FloatingPanel",
         "repositoryURL": "https://github.com/scenee/FloatingPanel",
         "state": {

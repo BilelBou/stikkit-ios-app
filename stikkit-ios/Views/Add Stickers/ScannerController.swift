@@ -1,6 +1,8 @@
 import AVFoundation
 import UIKit
 
+import DesignSystem
+
 class ScannerViewController: Controller, AVCaptureMetadataOutputObjectsDelegate {
     var captureSession: AVCaptureSession!
     var previewLayer: AVCaptureVideoPreviewLayer!
@@ -56,7 +58,7 @@ class ScannerViewController: Controller, AVCaptureMetadataOutputObjectsDelegate 
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateNavigationBar(NavTitleStyle.title("Scan the QR Code"), leftButton: .back)
+        configureNavigationBar(title: "Scan the QR Code", leftType: .back)
 
         if (captureSession?.isRunning == false) {
             captureSession.startRunning()

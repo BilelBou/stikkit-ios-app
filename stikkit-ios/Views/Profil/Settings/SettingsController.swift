@@ -7,6 +7,8 @@
 
 import UIKit
 
+import DesignSystem
+
 class SettingsController: Controller {
     let sections: [SettingsSection] = [.preferences, .account]
     let defaults = UserDefaults.standard
@@ -64,7 +66,7 @@ class SettingsController: Controller {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateNavigationBar(NavTitleStyle.title("Settings"), leftButton: .back)
+        configureNavigationBar(title: "Settings", leftType: .back)
     }
 
     private func configureSnapshot() {
@@ -98,7 +100,9 @@ extension SettingsController: UICollectionViewDelegate {
         case .language:
             break
         case .editUsername:
-            break
+            let vc = EditUsernameController(username: defaults.string(forKey: "firstName")!, id: defaults.string(forKey: "id")!)
+            vc.modalPresentationStyle = .fullScreen
+            self.navigationController?.pushViewController(vc, animated: true)
         case .logout:
             let alert = UIAlertController(title: "Log Out", message: "You want to log out ?", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))

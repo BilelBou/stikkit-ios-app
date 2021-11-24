@@ -9,6 +9,8 @@ import UIKit
 import Hero
 import MHLoadingButton
 
+import DesignSystem
+
 class LoginViewController: UIViewController {
     let APICalls = AuthAPI()
 
@@ -26,7 +28,7 @@ class LoginViewController: UIViewController {
     
     private lazy var emailField: UITextField = UITextField()..{
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.setIcon(icon: Icon.App.user.typographyIcon(font: Font.Icon._16))
+        $0.setIcon(icon: Icon.person.typographyIcon(font: VFont.Icon._16))
         $0.backgroundColor = Color.fieldBackgroundColor
         $0.heightAnchor.constraint(equalToConstant: 40).isActive = true
         $0.layer.cornerRadius = 12
@@ -39,7 +41,7 @@ class LoginViewController: UIViewController {
     private lazy var passwordField: UITextField = UITextField()..{
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.backgroundColor = Color.fieldBackgroundColor
-        $0.setIcon(icon: Icon.App.bell.typographyIcon(font: Font.Icon._16))
+        $0.setIcon(icon: Icon.checkMark.typographyIcon(font: VFont.Icon._16))
         $0.heightAnchor.constraint(equalToConstant: 40).isActive = true
         $0.layer.cornerRadius = 12
         $0.attributedPlaceholder = "Password".typography(.caption, color: Color.lightGray)

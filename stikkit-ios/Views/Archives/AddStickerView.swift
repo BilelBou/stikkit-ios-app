@@ -1,6 +1,8 @@
 import UIKit
 import MHLoadingButton
 
+import DesignSystem
+
 class AddStickerView: UIView {
     let APICalls = AuthAPI()
 
@@ -25,7 +27,7 @@ class AddStickerView: UIView {
     
     lazy var textFieldCode: UITextField = UITextField()..{
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.setIcon(icon: Icon.App.plus.typographyIcon(font: Font.Icon._16))
+        $0.setIcon(icon: Icon.plus.unicode.typographyIcon(font: VFont.Icon._16))
         $0.backgroundColor = Color.fieldBackgroundColor
         $0.heightAnchor.constraint(equalToConstant: 40).isActive = true
         $0.layer.cornerRadius = 12

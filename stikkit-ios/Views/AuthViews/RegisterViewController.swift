@@ -9,6 +9,7 @@ import UIKit
 import Hero
 import MHLoadingButton
 
+import DesignSystem
 
 class RegisterViewController: UIViewController {
     let APICalls = AuthAPI()
@@ -21,7 +22,7 @@ class RegisterViewController: UIViewController {
     
     private lazy var emailField: UITextField = UITextField()..{
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.setIcon(icon: Icon.App.user.typographyIcon(font: Font.Icon._16))
+        $0.setIcon(icon: Icon.person.unicode.typographyIcon(font: VFont.Icon._16))
         $0.backgroundColor = Color.fieldBackgroundColor
         $0.heightAnchor.constraint(equalToConstant: 40).isActive = true
         $0.layer.cornerRadius = 12
@@ -34,7 +35,7 @@ class RegisterViewController: UIViewController {
     private lazy var passwordField: UITextField = UITextField()..{
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.backgroundColor = Color.fieldBackgroundColor
-        $0.setIcon(icon: Icon.App.bell.typographyIcon(font: Font.Icon._16))
+        $0.setIcon(icon: Icon.xMark.unicode.typographyIcon(font: VFont.Icon._16))
         $0.heightAnchor.constraint(equalToConstant: 40).isActive = true
         $0.layer.cornerRadius = 12
         $0.attributedPlaceholder = "Password".typography(.caption, color: Color.lightGray)
@@ -47,7 +48,7 @@ class RegisterViewController: UIViewController {
     
     private lazy var firstNameField: UITextField = UITextField()..{
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.setIcon(icon: Icon.App.user.typographyIcon(font: Font.Icon._16))
+        $0.setIcon(icon: Icon.person.unicode.typographyIcon(font: VFont.Icon._16))
         $0.backgroundColor = Color.fieldBackgroundColor
         $0.heightAnchor.constraint(equalToConstant: 40).isActive = true
         $0.layer.cornerRadius = 12
@@ -59,7 +60,7 @@ class RegisterViewController: UIViewController {
     
     private lazy var lastNameField: UITextField = UITextField()..{
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.setIcon(icon: Icon.App.user.typographyIcon(font: Font.Icon._16))
+        $0.setIcon(icon: Icon.person.unicode.typographyIcon(font: VFont.Icon._16))
         $0.backgroundColor = Color.fieldBackgroundColor
         $0.heightAnchor.constraint(equalToConstant: 40).isActive = true
         $0.layer.cornerRadius = 12

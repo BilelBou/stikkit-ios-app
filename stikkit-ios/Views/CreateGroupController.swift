@@ -1,4 +1,5 @@
 import UIKit
+import DesignSystem
 
 enum createType {
     case group, stickers, stickerName(stickerid: String)
@@ -87,7 +88,7 @@ class CreateGroupController: Controller {
     private lazy var groupeNameTextField = UITextField()..{
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.backgroundColor = Color.fieldBackgroundColor
-        $0.setIcon(icon: Icon.App.addEmote.typographyIcon(font: Font.Icon._16))
+        $0.setIcon(icon: Icon.person.typographyIcon(font: VFont.Icon._16))
         $0.heightAnchor.constraint(equalToConstant: 40).isActive = true
         $0.layer.cornerRadius = 12
         $0.attributedPlaceholder = type.placeHolder.typography(.text, color: Color.lightGray)
@@ -120,7 +121,8 @@ class CreateGroupController: Controller {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureStyleAndLayout()
-        updateNavigationBar(NavTitleStyle.title(type.name), titleColor: Color.white, leftButton: .back)
+        configureNavigationBar(title: type.name, titleColor: Color.white, leftType: .back)
+    
         tabBarController?.tabBar.isHidden = true
     }
 

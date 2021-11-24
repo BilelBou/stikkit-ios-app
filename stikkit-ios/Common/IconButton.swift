@@ -1,12 +1,14 @@
 import UIKit
 
+import DesignSystem
+
 class IconButton: UIView {
     private let icon: String
     private let title: String
 
     private lazy var iconLabel = UILabel()..{
         $0.translatesAutoresizingMaskIntoConstraints = false
-        $0.attributedText = icon.typographyIcon(font: Font.Icon._20)
+        $0.attributedText = icon.typographyIcon(font: VFont.Icon._20)
     }
 
     private lazy var titleLabel = UILabel()..{
@@ -35,7 +37,7 @@ class IconButton: UIView {
             iconLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
 
             titleLabel.leadingAnchor.constraint(equalTo: iconLabel.trailingAnchor, constant: Margin._10),
-            titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            titleLabel.centerYAnchor.constraint(equalTo: iconLabel.centerYAnchor),
         ])
     }
 

@@ -1,4 +1,5 @@
 import UIKit
+import DesignSystem
 
 final class SettingCell: UICollectionViewCell {
 
@@ -43,7 +44,7 @@ final class SettingCell: UICollectionViewCell {
     }
 
     func configure(_ setting: Setting) {
-        settingIcon.attributedText = setting.icon.typographyIcon(font: Font.Icon._24)
+        settingIcon.attributedText = setting.icon.typographyIcon(font: VFont.Icon._24)
         settingLabel.attributedText = setting.title.typography(.text)
         actionLabel.attributedText = setting.actionTitle?.typography(.text, color: Color.buttonColor.withAlphaComponent(0.5))
     }

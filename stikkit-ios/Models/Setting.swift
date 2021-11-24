@@ -1,3 +1,5 @@
+import DesignSystem
+
 enum Setting {
 
     case language
@@ -6,9 +8,9 @@ enum Setting {
 
     var icon: String {
         switch self {
-        case .language: return Icon.App.zoomOut
-        case .editUsername: return Icon.App.user
-        case .logout: return Icon.App.home
+        case .language: return Icon.globe.unicode
+        case .editUsername: return Icon.person.unicode
+        case .logout: return Icon.logOut.unicode
         }
     }
 

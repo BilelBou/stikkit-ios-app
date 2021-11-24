@@ -1,6 +1,7 @@
 import UIKit
 
 import Kingfisher
+import DesignSystem
 
 final class MyProfileViewController: Controller {
     private var user: User
@@ -15,7 +16,7 @@ final class MyProfileViewController: Controller {
         $0.contentMode = .scaleAspectFill
     }
 
-    private lazy var createGroupButton = IconButton(icon: Icon.App.plus, title: "Create a new group")..{
+    private lazy var createGroupButton = IconButton(icon: Icon.plus.unicode, title: "Create a new group")..{
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.clipsToBounds = true
         $0.layer.cornerRadius = 20
@@ -23,7 +24,7 @@ final class MyProfileViewController: Controller {
         $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapNewGroup)))
     }
 
-    private lazy var createStickerLabel = IconButton(icon: Icon.App.plus, title: "Add a new sticker")..{
+    private lazy var createStickerLabel = IconButton(icon: Icon.plus.unicode, title: "Add a new sticker")..{
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.clipsToBounds = true
         $0.layer.cornerRadius = 20
@@ -94,7 +95,7 @@ final class MyProfileViewController: Controller {
         super.viewDidLoad()
         configureSnapshot()
         view.backgroundColor = Color.backgroundColor
-        updateNavigationBar(NavTitleStyle.title(user.firstName), titleColor: Color.white, rightButton: .option, rightColor: Color.white)
+        configureNavigationBar(title: user.firstName, rightType: .settings, rightColor: Color.white)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -115,8 +116,8 @@ final class MyProfileViewController: Controller {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    override func didTapOption() {
+    
+    override func didTapSettings() {
         let vc = SettingsController()
         vc.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(vc, animated: true)

@@ -77,13 +77,29 @@ class MapViewController: UIViewController, StickersViewControllerDelegate, MKMap
     }
 
     func didTapCell(sticker: Sticker) {
-        guard let position = sticker.position else { return }
+        guard let position = sticker.position, let userLatitude = locationManager.location?.coordinate.latitude, let userLongitude = locationManager.location?.coordinate.longitude else { return }
         mapView.centerToLocation(CLLocation(latitude: position.latitude, longitude: position.longitude), regionRadius: 100)
-        stickersPanel.removePanelFromParent(animated: true)
-        detailsVC.configure(sticker: sticker)
-        detailsPanel.set(contentViewController: detailsVC)
-        detailsPanel.surfaceView.appearance = panelAppearance
-        detailsPanel.addPanel(toParent: self, animated: true)
+        let stickerPosition = CLLocationCoordinate2D.init(latitude: position.latitude, longitude: position.longitude)
+        let myPosition = CLLocationCoordinate2D.init(latitude: userLatitude, longitude: userLongitude)
+        
+        let request = MKDirections.Request()
+        request.source = MKMapItem(placemark: MKPlacemark(coordinate: myPosition, addressDictionary: nil))
+        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: stickerPosition, addressDictionary: nil))
+        request.requestsAlternateRoutes = true
+        request.transportType = .automobile
+        
+        let directions = MKDirections(request: request)
+        
+        directions.calculate { [unowned self] response, error in
+            guard let unwrappedResponse = response else { return }
+            if let route = unwrappedResponse.routes.first {
+                stickersPanel.removePanelFromParent(animated: true)
+                detailsVC.configure(sticker: sticker, route: route)
+                detailsPanel.set(contentViewController: detailsVC)
+                detailsPanel.surfaceView.appearance = panelAppearance
+                detailsPanel.addPanel(toParent: self, animated: true)
+            }
+        }
     }
 
     func createAnnotation() {
@@ -113,38 +129,15 @@ private extension MKMapView {
 }
 
 extension MapViewController: StickerDetailViewControllerDelegate {
-    func didTapDirection(sticker: Sticker) {
-        guard let position = sticker.position, let userLatitude = locationManager.location?.coordinate.latitude, let userLongitude = locationManager.location?.coordinate.longitude else { return }
-        
-        let stickerPosition = CLLocationCoordinate2D.init(latitude: position.latitude, longitude: position.longitude)
-        let myPosition = CLLocationCoordinate2D.init(latitude: userLatitude, longitude: userLongitude)
-        showRouteOnMap(pickupCoordinate: myPosition, destinationCoordinate: stickerPosition)
-    }
-    
-    func showRouteOnMap(pickupCoordinate: CLLocationCoordinate2D, destinationCoordinate: CLLocationCoordinate2D) {
-        
-        let request = MKDirections.Request()
-        request.source = MKMapItem(placemark: MKPlacemark(coordinate: pickupCoordinate, addressDictionary: nil))
-        request.destination = MKMapItem(placemark: MKPlacemark(coordinate: destinationCoordinate, addressDictionary: nil))
-        request.requestsAlternateRoutes = true
-        request.transportType = .automobile
-        
-        let directions = MKDirections(request: request)
-        
-        directions.calculate { [unowned self] response, error in
-            guard let unwrappedResponse = response else { return }
-            
-            if let route = unwrappedResponse.routes.first {
-                self.mapView.addOverlay(route.polyline)
-                self.mapView.setVisibleMapRect(route.polyline.boundingMapRect, edgePadding: UIEdgeInsets.init(top: 80.0, left: 20.0, bottom: 100.0, right: 20.0), animated: true)
-            }
-        }
+    func didTapDirection(sticker: Sticker, polyline: MKPolyline) {
+        self.mapView.addOverlay(polyline)
+        self.mapView.setVisibleMapRect(polyline.boundingMapRect, edgePadding: UIEdgeInsets.init(top: 80.0, left: 20.0, bottom: 100.0, right: 20.0), animated: true)
     }
 
 
     func didTapClose() {
         if !mapView.overlays.isEmpty {
-            mapView.removeOverlay(mapView.overlays.first as! MKOverlay)
+            mapView.removeOverlay(mapView.overlays.first!)
         }
         detailsPanel.removePanelFromParent(animated: true)
         stickersPanel.set(contentViewController: stickersVC)

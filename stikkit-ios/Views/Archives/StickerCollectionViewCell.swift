@@ -47,11 +47,11 @@ class StickerCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(emptyGroup)
         
         NSLayoutConstraint.activate([
-            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Margin._10),
-            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Margin._10),
+            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Margin._14),
+            nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Margin._14),
 
             imagesStackView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: Margin._10),
-            imagesStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Margin._10),
+            imagesStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Margin._14),
 
             emptyGroup.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: Margin._10),
             emptyGroup.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Margin._10),

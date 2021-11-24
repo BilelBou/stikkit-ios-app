@@ -199,4 +199,31 @@ public class AuthAPI {
         task.resume()
 
     }
+    
+    func updateUsername(id: String, username: String) {
+        let urlUpdateUsername = URL(string: urlAPI+"users/update")
+        var request = URLRequest(url: urlUpdateUsername!)
+        let body = [
+            "id": id,
+            "firstName": username
+        ]
+        
+        let bodyData = try? JSONSerialization.data(withJSONObject: body)
+        request.httpMethod = "PUT"
+        request.addValue("application/json",forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json",forHTTPHeaderField: "Accept")
+        request.httpBody = bodyData
+        
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print(error)
+            } else {
+                if let response = response as? HTTPURLResponse {
+                    print(response.statusCode)
+                }
+            }
+        }
+        task.resume()
+    }
 }

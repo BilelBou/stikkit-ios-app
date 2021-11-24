@@ -37,6 +37,8 @@
 		24EDE423273953CF009CCAE2 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EDE422273953CF009CCAE2 /* SettingCell.swift */; };
 		24EDE42527395404009CCAE2 /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EDE42427395404009CCAE2 /* Setting.swift */; };
 		24EDE4272739553F009CCAE2 /* SettingHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24EDE4262739553F009CCAE2 /* SettingHeader.swift */; };
+		24F207B1274BFA1300B14A48 /* EditUsernameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F207B0274BFA1300B14A48 /* EditUsernameController.swift */; };
+		24F207B4274BFE7B00B14A48 /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = 24F207B3274BFE7B00B14A48 /* DesignSystem */; };
 		24F3926B2721CFD800B49CDC /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 24F3926A2721CFD800B49CDC /* Kingfisher */; };
 		24F3926E2721D9B800B49CDC /* GroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3926D2721D9B800B49CDC /* GroupModel.swift */; };
 		24F392702721E5AF00B49CDC /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F3926F2721E5AF00B49CDC /* User.swift */; };
@@ -66,7 +68,7 @@
 		24F432FD2624772D00209D94 /* loadingWhite.json in Resources */ = {isa = PBXBuildFile; fileRef = 24F432F32624772D00209D94 /* loadingWhite.json */; };
 		24F432FE2624772D00209D94 /* RoobertBold.woff in Resources */ = {isa = PBXBuildFile; fileRef = 24F432F52624772D00209D94 /* RoobertBold.woff */; };
 		24F432FF2624772D00209D94 /* RoobertSemiBold.woff in Resources */ = {isa = PBXBuildFile; fileRef = 24F432F62624772D00209D94 /* RoobertSemiBold.woff */; };
-		24F433002624772D00209D94 /* Icon.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 24F432F72624772D00209D94 /* Icon.ttf */; };
+		24F433002624772D00209D94 /* Icon1111.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 24F432F72624772D00209D94 /* Icon1111.ttf */; };
 		24F433012624772D00209D94 /* RoobertRegular.woff in Resources */ = {isa = PBXBuildFile; fileRef = 24F432F82624772D00209D94 /* RoobertRegular.woff */; };
 		24F59B952725931B001C28AC /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24F59B942725931B001C28AC /* IconButton.swift */; };
 /* End PBXBuildFile section */
@@ -127,6 +129,7 @@
 		24EDE422273953CF009CCAE2 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		24EDE42427395404009CCAE2 /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		24EDE4262739553F009CCAE2 /* SettingHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHeader.swift; sourceTree = "<group>"; };
+		24F207B0274BFA1300B14A48 /* EditUsernameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditUsernameController.swift; sourceTree = "<group>"; };
 		24F3926D2721D9B800B49CDC /* GroupModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupModel.swift; sourceTree = "<group>"; };
 		24F3926F2721E5AF00B49CDC /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		24F4328F262476B100209D94 /* stikkit-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "stikkit-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,7 +163,7 @@
 		24F432F32624772D00209D94 /* loadingWhite.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = loadingWhite.json; sourceTree = "<group>"; };
 		24F432F52624772D00209D94 /* RoobertBold.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = RoobertBold.woff; sourceTree = "<group>"; };
 		24F432F62624772D00209D94 /* RoobertSemiBold.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = RoobertSemiBold.woff; sourceTree = "<group>"; };
-		24F432F72624772D00209D94 /* Icon.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Icon.ttf; sourceTree = "<group>"; };
+		24F432F72624772D00209D94 /* Icon1111.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Icon1111.ttf; sourceTree = "<group>"; };
 		24F432F82624772D00209D94 /* RoobertRegular.woff */ = {isa = PBXFileReference; lastKnownFileType = file; path = RoobertRegular.woff; sourceTree = "<group>"; };
 		24F4332826247C6400209D94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "stikkit-ios/Info.plist"; sourceTree = SOURCE_ROOT; };
 		24F59B942725931B001C28AC /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
@@ -173,6 +176,7 @@
 			files = (
 				24D97399263185FE00D1F966 /* MHLoadingButton in Frameworks */,
 				24F3926B2721CFD800B49CDC /* Kingfisher in Frameworks */,
+				24F207B4274BFE7B00B14A48 /* DesignSystem in Frameworks */,
 				24C12ED62630C6D000DB2337 /* JWTDecode in Frameworks */,
 				243C759526EF6FF0005E1719 /* FloatingPanel in Frameworks */,
 				24C12E7726309DD400DB2337 /* Hero in Frameworks */,
@@ -212,6 +216,7 @@
 				24C12E7026309C1100DB2337 /* RegisterViewController.swift */,
 				24EDE41C27393FDA009CCAE2 /* StickerCell.swift */,
 				24496C602743D79200611B43 /* AuthorizationController.swift */,
+				24F207B0274BFA1300B14A48 /* EditUsernameController.swift */,
 			);
 			path = AuthViews;
 			sourceTree = "<group>";
@@ -402,7 +407,7 @@
 			children = (
 				24F432F52624772D00209D94 /* RoobertBold.woff */,
 				24F432F62624772D00209D94 /* RoobertSemiBold.woff */,
-				24F432F72624772D00209D94 /* Icon.ttf */,
+				24F432F72624772D00209D94 /* Icon1111.ttf */,
 				24F432F82624772D00209D94 /* RoobertRegular.woff */,
 			);
 			path = Fonts;
@@ -440,6 +445,7 @@
 				243C759426EF6FF0005E1719 /* FloatingPanel */,
 				24F3926A2721CFD800B49CDC /* Kingfisher */,
 				24496C5E2743D60F00611B43 /* Lottie */,
+				24F207B3274BFE7B00B14A48 /* DesignSystem */,
 			);
 			productName = "stikkit-ios";
 			productReference = 24F4328F262476B100209D94 /* stikkit-ios.app */;
@@ -519,6 +525,7 @@
 				243C759326EF6FF0005E1719 /* XCRemoteSwiftPackageReference "FloatingPanel" */,
 				24F392692721CFD800B49CDC /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				24496C5D2743D60F00611B43 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				24F207B2274BFE7B00B14A48 /* XCRemoteSwiftPackageReference "design-system-ios" */,
 			);
 			productRefGroup = 24F43290262476B100209D94 /* Products */;
 			projectDirPath = "";
@@ -536,7 +543,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24F433002624772D00209D94 /* Icon.ttf in Resources */,
+				24F433002624772D00209D94 /* Icon1111.ttf in Resources */,
 				24496C642743DA7500611B43 /* route.json in Resources */,
 				24F433012624772D00209D94 /* RoobertRegular.woff in Resources */,
 				24F432FD2624772D00209D94 /* loadingWhite.json in Resources */,
@@ -583,6 +590,7 @@
 				24F3926E2721D9B800B49CDC /* GroupModel.swift in Sources */,
 				24F432E62624772500209D94 /* Standard.swift in Sources */,
 				243C759926EF73D0005E1719 /* StickerTableViewCell.swift in Sources */,
+				24F207B1274BFA1300B14A48 /* EditUsernameController.swift in Sources */,
 				24F432DA2624772500209D94 /* UserDefault.swift in Sources */,
 				24D973AB2631C11600D1F966 /* StickerModel.swift in Sources */,
 				2470152626EF928B005D3B75 /* MyProfileViewController.swift in Sources */,
@@ -979,6 +987,14 @@
 				minimumVersion = 0.1.2;
 			};
 		};
+		24F207B2274BFE7B00B14A48 /* XCRemoteSwiftPackageReference "design-system-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/gustvision/design-system-ios";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		24F392692721CFD800B49CDC /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -1014,6 +1030,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 24D97397263185FE00D1F966 /* XCRemoteSwiftPackageReference "loading-buttons-ios" */;
 			productName = MHLoadingButton;
+		};
+		24F207B3274BFE7B00B14A48 /* DesignSystem */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 24F207B2274BFE7B00B14A48 /* XCRemoteSwiftPackageReference "design-system-ios" */;
+			productName = DesignSystem;
 		};
 		24F3926A2721CFD800B49CDC /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
