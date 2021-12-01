@@ -241,4 +241,20 @@ public class AuthAPI {
         }
         task.resume()
     }
+    
+    func sendEmailPassword(email: String, completion:@escaping (Bool)-> Void) {
+        let urlLinkSticker = URL(string: urlAPI+"users/send-reset/"+email)
+        var request = URLRequest(url: urlLinkSticker!)
+        request.httpMethod = "POST"
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { (data, response, error) in
+            if let error = error {
+                print(error)
+                completion(false)
+            } else {
+                completion(true)
+            }
+        }
+        task.resume()
+    }
 }

@@ -81,6 +81,8 @@ class LoginViewController: UIViewController {
     private lazy var forgotPasswordLabel: UILabel = UILabel()..{
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.attributedText = "Forgot Password?".typography(.caption)
+        $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapForgotPassword)))
+        $0.isUserInteractionEnabled = true
     }
     
     override func viewDidLoad() {
@@ -106,8 +108,6 @@ class LoginViewController: UIViewController {
         containerView.addSubview(registerChooseButton)
         containerView.addSubview(errorLabel)
         loginChooseButton.addSubview(selectionIndicator)
-
-        
 
         NSLayoutConstraint.activate([
             containerView.heightAnchor.constraint(equalToConstant: 260),
@@ -189,6 +189,12 @@ class LoginViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTapView(_:)))
         view.isUserInteractionEnabled = true
         view.addGestureRecognizer(tap)
+    }
+    
+    @objc func didTapForgotPassword() {
+        let vc = ForgetPasswordController()
+        vc.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

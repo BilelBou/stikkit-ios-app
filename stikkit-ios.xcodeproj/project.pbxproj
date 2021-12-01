@@ -15,6 +15,7 @@
 		24496C5F2743D60F00611B43 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 24496C5E2743D60F00611B43 /* Lottie */; };
 		24496C612743D79200611B43 /* AuthorizationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24496C602743D79200611B43 /* AuthorizationController.swift */; };
 		24496C642743DA7500611B43 /* route.json in Resources */ = {isa = PBXBuildFile; fileRef = 24496C632743DA7500611B43 /* route.json */; };
+		244B31682757CD2800473FA5 /* ForgetPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 244B31672757CD2800473FA5 /* ForgetPasswordController.swift */; };
 		2470152226EF871D005D3B75 /* DashboardTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2470152126EF871D005D3B75 /* DashboardTabBarController.swift */; };
 		2470152626EF928B005D3B75 /* MyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2470152526EF928B005D3B75 /* MyProfileViewController.swift */; };
 		2470152826F0CE46005D3B75 /* GeoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2470152726F0CE46005D3B75 /* GeoModel.swift */; };
@@ -111,6 +112,7 @@
 		243C759826EF73D0005E1719 /* StickerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerTableViewCell.swift; sourceTree = "<group>"; };
 		24496C602743D79200611B43 /* AuthorizationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationController.swift; sourceTree = "<group>"; };
 		24496C632743DA7500611B43 /* route.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = route.json; path = ../../../../../Downloads/route.json; sourceTree = "<group>"; };
+		244B31672757CD2800473FA5 /* ForgetPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetPasswordController.swift; sourceTree = "<group>"; };
 		2470152126EF871D005D3B75 /* DashboardTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardTabBarController.swift; sourceTree = "<group>"; };
 		2470152526EF928B005D3B75 /* MyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileViewController.swift; sourceTree = "<group>"; };
 		2470152726F0CE46005D3B75 /* GeoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoModel.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				24EDE41C27393FDA009CCAE2 /* StickerCell.swift */,
 				24496C602743D79200611B43 /* AuthorizationController.swift */,
 				24F207B0274BFA1300B14A48 /* EditUsernameController.swift */,
+				244B31672757CD2800473FA5 /* ForgetPasswordController.swift */,
 			);
 			path = AuthViews;
 			sourceTree = "<group>";
@@ -592,6 +595,7 @@
 				243C759926EF73D0005E1719 /* StickerTableViewCell.swift in Sources */,
 				24F207B1274BFA1300B14A48 /* EditUsernameController.swift in Sources */,
 				24F432DA2624772500209D94 /* UserDefault.swift in Sources */,
+				244B31682757CD2800473FA5 /* ForgetPasswordController.swift in Sources */,
 				24D973AB2631C11600D1F966 /* StickerModel.swift in Sources */,
 				2470152626EF928B005D3B75 /* MyProfileViewController.swift in Sources */,
 				24C12ECF2630C68300DB2337 /* UserModel.swift in Sources */,
