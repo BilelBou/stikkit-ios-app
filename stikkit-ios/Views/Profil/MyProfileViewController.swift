@@ -104,6 +104,7 @@ final class MyProfileViewController: Controller {
             self.configureSnapshot()
             DispatchQueue.main.async {
                 self.configureNavigationBar(title: user.firstName, rightType: .settings, rightColor: Color.white)
+                self.groupsCollectionView.reloadData()
             }
         }
         tabBarController?.tabBar.isHidden = false
@@ -178,13 +179,18 @@ final class MyProfileViewController: Controller {
 
 extension MyProfileViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+        if user.group?.createdAt != nil {
+            return 1
+        } else {
+            return 0
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: StickerCollectionViewCell = collectionView.dequeue(for: indexPath)
-        guard let group = user.group else { return UICollectionViewCell() }
-        cell.configure(name: group.name, users: group.users)
+        guard let group = user.group, let groupUsers = group.users, let groupName = group.name else { return UICollectionViewCell() }
+        cell.delegate = self
+        cell.configure(name: groupName, users: groupUsers)
         return cell
     }
 
@@ -192,5 +198,25 @@ extension MyProfileViewController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = collectionView.frame.width
         return CGSize(width: width, height: 100)
+    }
+}
+
+extension MyProfileViewController: StickerCollectionViewCellDelegate {
+    func didTapGroupSetting() {
+        let alert = UIAlertController(title: "Remove this groupe", message: "You want to remove this group ?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Remove group", style: .destructive, handler: { alertAction in
+            AuthAPI.shared.leaveGroup() { state in
+                if state {
+                    AuthAPI.shared.getUserById(id: self.defaults.string(forKey: "id")!) { user in
+                        self.user = user
+                        DispatchQueue.main.async {
+                            self.groupsCollectionView.reloadData()
+                        }
+                    }
+                }
+            }
+        }))
+        present(alert, animated: true, completion: nil)
     }
 }

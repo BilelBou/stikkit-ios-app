@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         Fonts.registerAllFonts()
 
-        if defaults.string(forKey: "firstName") != nil {
+        if defaults.string(forKey: "id") != nil {
             guard let windowScene = (scene as? UIWindowScene) else { return }
             window = UIWindow(frame: windowScene.coordinateSpace.bounds)
             window?.windowScene = windowScene

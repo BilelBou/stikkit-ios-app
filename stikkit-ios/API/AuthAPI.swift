@@ -121,7 +121,7 @@ public class AuthAPI {
         }
         task.resume()
     }
-
+    
     func createGroupe(name: String, completion: @escaping (Int) -> Void) {
         let urlCreateGroup = URL(string: urlAPI+"groups/create")
         var request = URLRequest(url: urlCreateGroup!)
@@ -129,13 +129,13 @@ public class AuthAPI {
             "ownerId" : defaults.string(forKey: "id")!,
             "name" : name,
         ]
-
+        
         let bodyData = try? JSONSerialization.data(withJSONObject: body)
         request.httpMethod = "POST"
         request.addValue("application/json",forHTTPHeaderField: "Content-Type")
         request.addValue("application/json",forHTTPHeaderField: "Accept")
         request.httpBody = bodyData
-
+        
         let session = URLSession.shared
         let task = session.dataTask(with: request) { (data, response, error) in
             if let error = error {
@@ -148,13 +148,13 @@ public class AuthAPI {
             }
         }
         task.resume()
-
+        
     }
-
+    
     func getUserById(id: String, completion: @escaping (User) -> Void) {
         let urlGetUser = (URL(string: urlAPI+"users/"+id))
         var request = URLRequest(url: urlGetUser!)
-
+        
         request.httpMethod = "GET"
         let session = URLSession.shared
         let task = session.dataTask(with: request) { data, response, error in
@@ -179,7 +179,7 @@ public class AuthAPI {
             "ownerId" : defaults.string(forKey: "id")!,
             "name" : name,
         ]
-
+        
         let bodyData = try? JSONSerialization.data(withJSONObject: body)
         request.httpMethod = "PUT"
         request.addValue("application/json",forHTTPHeaderField: "Content-Type")
@@ -197,7 +197,7 @@ public class AuthAPI {
             }
         }
         task.resume()
-
+        
     }
     
     func updateUsername(id: String, username: String) {
@@ -222,6 +222,21 @@ public class AuthAPI {
                 if let response = response as? HTTPURLResponse {
                     print(response.statusCode)
                 }
+            }
+        }
+        task.resume()
+    }
+    
+    func leaveGroup(completion: @escaping (Bool) -> Void) {
+        let urlLeaveGrup = URL(string: urlAPI+"groups/remove-user/\(defaults.string(forKey: "id")!)")
+        var request = URLRequest(url: urlLeaveGrup!)
+        request.httpMethod = "PUT"
+        let session = URLSession.shared
+        let task = session.dataTask(with: request) { data, response, error in
+            if let _ = error {
+                completion(false)
+            } else {
+                completion(true)
             }
         }
         task.resume()

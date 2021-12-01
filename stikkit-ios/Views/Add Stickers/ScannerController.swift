@@ -93,7 +93,6 @@ class ScannerViewController: Controller, AVCaptureMetadataOutputObjectsDelegate 
     func found(code: String) {
         print(code)
         
-        // CHOOSE A NAME FOR A STICKER ROOT HERE
         let vc = CreateGroupController(type: .stickerName(stickerid: code))
         vc.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(vc, animated: true)

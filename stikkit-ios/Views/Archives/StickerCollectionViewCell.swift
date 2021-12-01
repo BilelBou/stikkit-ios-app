@@ -8,9 +8,22 @@
 import UIKit
 import Kingfisher
 
+import DesignSystem
+
+protocol StickerCollectionViewCellDelegate: AnyObject {
+    func didTapGroupSetting()
+}
+
 class StickerCollectionViewCell: UICollectionViewCell {
     private lazy var nameLabel: UILabel = UILabel()..{
         $0.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    private lazy var settingsLabel = UILabel()..{
+        $0.translatesAutoresizingMaskIntoConstraints = false
+        $0.attributedText = Icon.gear.typographyIcon(font: VFont.Icon._24)
+        $0.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapSettingsGroup)))
+        $0.isUserInteractionEnabled = true
     }
 
     private lazy var imagesStackView = UIStackView()..{
@@ -24,6 +37,8 @@ class StickerCollectionViewCell: UICollectionViewCell {
         $0.attributedText = "OOPS ! this group is empty !".typography(.captionStrong, color: Color.lightGray)
         $0.isHidden = true
     }
+    
+    weak var delegate: StickerCollectionViewCellDelegate?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,6 +51,9 @@ class StickerCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
+        for item in imagesStackView.arrangedSubviews {
+            imagesStackView.removeArrangedSubview(item)
+        }
     }
     
     func setup() {
@@ -45,10 +63,15 @@ class StickerCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(nameLabel)
         contentView.addSubview(imagesStackView)
         contentView.addSubview(emptyGroup)
+        addSubview(settingsLabel)
         
         NSLayoutConstraint.activate([
             nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Margin._14),
             nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Margin._14),
+            
+            settingsLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -Margin._14),
+            settingsLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Margin._14),
+
 
             imagesStackView.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: Margin._10),
             imagesStackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Margin._14),
@@ -83,4 +106,9 @@ class StickerCollectionViewCell: UICollectionViewCell {
             imagesStackView.isHidden = true
         }
     }
+    
+    @objc private func didTapSettingsGroup() {
+        delegate?.didTapGroupSetting()
+    }
+    
 }

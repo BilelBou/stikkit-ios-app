@@ -3,7 +3,8 @@ import UIKit
 import DesignSystem
 
 final class EditUsernameController: Controller {
-    
+    let defaults = UserDefaults.standard
+
     private lazy var usernameTextField = UITextField()..{
         $0.translatesAutoresizingMaskIntoConstraints = false
         $0.delegate = self
@@ -16,7 +17,7 @@ final class EditUsernameController: Controller {
         $0.addTarget(self, action: #selector(didChangeText), for: .editingChanged)
     }
 
-    private let username: String
+    private var username: String
     private let id: String
     
     init(username: String, id: String) {

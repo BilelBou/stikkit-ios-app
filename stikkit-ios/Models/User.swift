@@ -5,21 +5,10 @@
 
 import Foundation
 
-// MARK: - Group
-struct Group: Codable {
-    let createdAt, id, ownerID, name: String
-    let users: [User]
-
-    enum CodingKeys: String, CodingKey {
-        case createdAt, id
-        case ownerID = "ownerId"
-        case name, users
-    }
-}
-
 // MARK: - Welcome
 struct User: Codable {
-    let createdAt, id, groupID, firstName: String
+    let createdAt, id, firstName: String
+    let groupID: String?
     let lastName, email: String
     let phone, address: String?
     let image, password: String
@@ -27,9 +16,21 @@ struct User: Codable {
     let stickers: [Sticker]?
 
     enum CodingKeys: String, CodingKey {
-        case createdAt, id
+        case createdAt, id, firstName
         case groupID = "groupId"
-        case firstName, lastName, email, phone, address, image, password, group, stickers
+        case lastName, email, phone, address, image, password, group, stickers
+    }
+}
+
+// MARK: - Group
+struct Group: Codable {
+    let createdAt, id, ownerID, name: String?
+    let users: [User]?
+
+    enum CodingKeys: String, CodingKey {
+        case createdAt, id
+        case ownerID = "ownerId"
+        case name, users
     }
 }
 
