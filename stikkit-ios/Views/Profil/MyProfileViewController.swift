@@ -95,7 +95,6 @@ final class MyProfileViewController: Controller {
         super.viewDidLoad()
         configureSnapshot()
         view.backgroundColor = Color.backgroundColor
-        configureNavigationBar(title: user.firstName, rightType: .settings, rightColor: Color.white)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -103,8 +102,12 @@ final class MyProfileViewController: Controller {
         AuthAPI.shared.getUserById(id: defaults.string(forKey: "id")!) { user in
             self.user = user
             self.configureSnapshot()
+            DispatchQueue.main.async {
+                self.configureNavigationBar(title: user.firstName, rightType: .settings, rightColor: Color.white)
+            }
         }
         tabBarController?.tabBar.isHidden = false
+        configureNavigationBar(title: user.firstName, rightType: .settings, rightColor: Color.white)
     }
 
     init(user: User) {
