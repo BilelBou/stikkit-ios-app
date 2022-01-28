@@ -74,7 +74,7 @@ class ScannerViewController: Controller, AVCaptureMetadataOutputObjectsDelegate 
     }
 
     override func didTapBack() {
-    navigationController?.popViewController(animated: true)
+        navigationController?.popViewController(animated: true)
     }
 
     func metadataOutput(_ output: AVCaptureMetadataOutput, didOutput metadataObjects: [AVMetadataObject], from connection: AVCaptureConnection) {
@@ -91,11 +91,10 @@ class ScannerViewController: Controller, AVCaptureMetadataOutputObjectsDelegate 
     }
 
     func found(code: String) {
-        print(code)
-        
         let vc = CreateGroupController(type: .stickerName(stickerid: code))
         vc.modalPresentationStyle = .fullScreen
-        navigationController?.pushViewController(vc, animated: true)
+        guard let navigationController = self.navigationController else { return }
+        navigationController.pushViewController(vc, animated: true)
     }
 
     override var prefersStatusBarHidden: Bool {

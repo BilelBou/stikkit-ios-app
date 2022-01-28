@@ -20,25 +20,33 @@ class DashboardTabBarController: UITabBarController {
             tabBar.standardAppearance = appearance
             tabBar.scrollEdgeAppearance = tabBar.standardAppearance
         }
-        //checkLogin()
     }
-
-    override func viewWillAppear(_ animated: Bool) {
+    
+    override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        AuthAPI.shared.getUserById(id: defaults.string(forKey: "id")!) { user in
-            self.user = user
-
-            DispatchQueue.main.async {
-                self.checkLocalization()
+        if !checkLogin() {
+            let vc = LoginViewController()
+            vc.modalPresentationStyle = .fullScreen
+            present(vc, animated: false, completion: nil)
+        } else {
+            AuthAPI.shared.getUserById(id: defaults.string(forKey: "id")!) { user in
+                self.user = user
+                
+                DispatchQueue.main.async {
+                    self.checkLocalization()
+                }
             }
         }
     }
 
-    private func checkLogin() {
+    override func viewWillAppear(_ animated: Bool) {
+    }
+
+    private func checkLogin() -> Bool {
         if defaults.string(forKey: "firstName") == nil  {
-            let vc = LoginViewController()
-            vc.modalPresentationStyle = .fullScreen
-            present(vc, animated: false, completion: nil)
+            return false
+        } else {
+            return true
         }
     }
     

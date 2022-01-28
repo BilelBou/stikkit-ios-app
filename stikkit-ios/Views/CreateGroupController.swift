@@ -61,8 +61,8 @@ enum createType {
     
     var isTextField: Bool {
         switch self {
-        case .stickers: return false
-        default: return true
+        case .stickers: return true
+        default: return false
         }
     }
 }
@@ -95,7 +95,7 @@ class CreateGroupController: Controller {
         $0.autocorrectionType = .no
         $0.textColor = Color.white
         $0.autocapitalizationType = .none
-        $0.isHidden = !type.isTextField
+        $0.isHidden = type.isTextField
     }
 
     private lazy var createGroupe = UIButton()..{
@@ -123,7 +123,6 @@ class CreateGroupController: Controller {
         configureStyleAndLayout()
         configureNavigationBar(title: type.name, titleColor: Color.white, leftType: .back)
     
-        tabBarController?.tabBar.isHidden = true
     }
 
     private func configureStyleAndLayout() {
